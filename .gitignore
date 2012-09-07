@@ -1,4 +1,14 @@
 *.log
 *.pot
 *.pyc
-local_settings.py
+.DS_Store
+
+
+*.sqlite
+.codeintel
+*.sublime-*
+
+
+MANIFEST
+dist/*
+
