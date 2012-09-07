@@ -1,4 +1,13 @@
 # Django settings for exampleproject project.
+import os
+
+import dj_database_url
+
+
+def project_dir(*paths):
+    base = os.path.realpath(os.path.dirname(__file__))
+    return os.path.join(base, *paths)
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,16 +18,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+DATABASES = {'default': dj_database_url.config(default='sqlite:///' +
+    project_dir('exampleproject.sqlite'))}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -78,7 +79,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '_*3&amp;h@$rjb(+vo0d7+0h_zm^1%uh^*(*q_as#jlcc36c=9%u=+'
+SECRET_KEY = 'lolimasekrit'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -116,9 +117,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'djangopypi',
+    # 'django_extensions',
 )
 
 # A sample logging configuration. The only tangible logging
